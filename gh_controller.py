@@ -27,7 +27,7 @@ threshold = current_temp
 while ghs.switches.push_button.is_off():
     pot_value = ghs.analog.pot.get_value()
     pot_percent = pot_value/MAX_POT_VAL
-    delta_temp - TEMP_SPAN * pot_percent
+    delta_temp = TEMP_SPAN * pot_percent
     threshold = round(current_temp + delta_temp, 1)
     if threshold != old_threshold:
         print(threshold, end=" ")
