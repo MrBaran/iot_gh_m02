@@ -49,7 +49,8 @@ while ghs.switches.push_button.is_off():
     pos_index = pot_value/MAX_POT_VAL
     ghs.servo.move(pos_index)
     sleep(.2)
-print()
+open_percent = round(pos_index * 100)
+print("\nLouver open position set to " + str(open_percent) + "%\n\n")
 #reset servo position
 ghs.servo.move(0)
 status = "CLOSED"
