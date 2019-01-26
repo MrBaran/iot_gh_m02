@@ -33,7 +33,7 @@ while ghs.switches.push_button.is_off():
         print(threshold, end=" ")
         old_threshold = threshold
     sleep(.5)
-print("\n")
+print("\nThreshold temp set to " + str(threshold) + "\n")
 print("Turn potentiometer fully counter-clockwise.")
 while ghs.analog.pot.get_value() > 0:
     pass
