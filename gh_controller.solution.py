@@ -12,18 +12,23 @@ print("Greenhouse controller")
 print()
 
 print("Turn potentiometer fully counter-clockwise.")
-while ghs.analog.pot.get_value() > 0:
-    pass
+pot_value = ghs.analog.pot.get_value()
+while pot_value > 0:
+    pot_value = ghs.analog.pot.get_value()
 
 current_temp = ghs.temperature.get_inside_temp_F()
 print("Current internal temperature is " + str(current_temp))
 print("Turn pot to set threshold temperature.")
 print("Press push-button switch when done.")
+TEMP_SPAN = 10
+MAX_POT_VAL = 1023
 old_threshold = current_temp
 threshold = current_temp
 while ghs.switches.push_button.is_off():
     pot_value = ghs.analog.pot.get_value()
-    threshold = round(current_temp + pot_value/1023 * 10, 1)
+    pot_percent = pot_value/MAX_POT_VAL
+    delta_temp - TEMP_SPAN * pot_percent
+    threshold = round(current_temp + delta_temp, 1)
     if threshold != old_threshold:
         print(threshold, end=" ")
         old_threshold = threshold
@@ -36,11 +41,12 @@ print()
 pos_index = 1
 # Can you create code that uses the pot to set pos_index,
 # an open position for the louver that is less than 1?
+#--your extension here --
 print("Turn pot to set servo open position.")
 print("Press push-button switch when done.")
 while ghs.switches.push_button.is_off():
     pot_value = ghs.analog.pot.get_value()
-    pos_index = pot_value/1023
+    pos_index = pot_value/MAX_POT_VAL
     ghs.servo.move(pos_index)
     sleep(.2)
 print()
